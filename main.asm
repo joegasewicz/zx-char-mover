@@ -13,12 +13,10 @@ ENTRY_POINT equ 32768
     ld (23693), a                   ; poke value into screen colour attr memory address
     call 0xdaf                      ; cls clear screen   
 
-
-    ld bc, NOTE_G_SHARP             ; put g# into hl
-    ld h, b
-    ld l, c
-
+    ld bc, NOTE_G_SHARP             ; put g# into bc
     call play_note                  ; play note g#
+    ld bc, NOTE_C                   ; play c into bc
+    call play_note                  ; play note c
 
 main:
     halt                            ; locks to 50fps / halt waits for the interupt

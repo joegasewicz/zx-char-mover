@@ -17,14 +17,16 @@
 ; -------------------------------------------
 ; de: duration = freq * seconds
 ; hl: pitch = 0x6acfc / freq - 30.125
+; h,l - 437500 / (415.3 - 30.125) = 1,023.3
 ; -------------------------------------------
 
-NOTE_G_SHARP equ 1023 ; h,l - 437500 / (415.3 - 30.125) = 1,023.3
+NOTE_C          equ 1642 ;
+NOTE_G_SHARP    equ 1023 ; 
 
 ; -------------------------------------------
 ; ROUTINE:  note_g_sharp
 ; DESCR:    plays a G# note for .5s 
-; INPUTS:   hl - the note to be played
+; INPUTS:   bc - the note to be played
 ; -------------------------------------------
 play_note:
     ld h, b
