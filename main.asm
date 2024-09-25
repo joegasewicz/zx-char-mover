@@ -14,6 +14,12 @@ ENTRY_POINT equ 32768
     call 0xdaf                      ; cls clear screen   
 
 
+    ld bc, NOTE_G_SHARP             ; put g# into hl
+    ld h, b
+    ld l, c
+
+    call play_note                  ; play note g#
+
 main:
     halt                            ; locks to 50fps / halt waits for the interupt
 
@@ -78,12 +84,12 @@ delete_sprite:
     rst 16
     ret
 
-; ------------------------------
+; ------------------------------------------------
 ; ROUTINE: set_position
-; DESCR: Uses the accumulator to set rst 16 from
-;        d,e with ascii AT.
-; INPUTS: de
-; ------------------------------
+; DESCR:    Uses the accumulator to set rst 16 from
+;           d,e with ascii AT.
+; INPUTS:   de
+; ------------------------------------------------
 set_position:
     ld a, ASCII_AT
     rst 16

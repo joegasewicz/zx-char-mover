@@ -19,12 +19,16 @@
 ; hl: pitch = 0x6acfc / freq - 30.125
 ; -------------------------------------------
 
+NOTE_G_SHARP equ 1023 ; h,l - 437500 / (415.3 - 30.125) = 1,023.3
+
 ; -------------------------------------------
-; ROUTINE: note_g_sharp
-; d,e - 415.3 * 0.5
-; h,l - 437500 / (415.3 - 30.125) = 1,023.3
-note_g_sharp:
-    ld hl, 0x03ff           ; h,l - 437500 / (415.3 - 30.125) = 1,023.3
+; ROUTINE:  note_g_sharp
+; DESCR:    plays a G# note for .5s 
+; INPUTS:   hl - the note to be played
+; -------------------------------------------
+play_note:
+    ld h, b
+    ld l, c
     ld de, 208              ; d,e - 415.3 * 0.5
     call 0x03b5             ; beeper subroutine
     ret 
