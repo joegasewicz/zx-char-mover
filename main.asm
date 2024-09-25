@@ -64,7 +64,6 @@ main:
     ld bc, (score)
     call 0x1a1b                     ; built in routine prints integer <= 9999
 
-
     jp main
 
 
@@ -144,5 +143,6 @@ player_sprite db 0x91
 
  include "sprites.asm"  
  include "constants.asm" 
+ include "audio.asm"
 
     end ENTRY_POINT
