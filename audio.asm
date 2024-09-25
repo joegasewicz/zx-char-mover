@@ -20,8 +20,10 @@
 ; h,l - 437500 / (415.3 - 30.125) = 1,023.3
 ; -------------------------------------------
 
-NOTE_C          equ 1642 ;
-NOTE_G_SHARP    equ 1023 ; 
+NOTE_C          equ 1642
+NOTE_C_SHARP    equ 1548
+NOTE_D          equ 1460
+NOTE_G_SHARP    equ 1023
 
 ; -------------------------------------------
 ; ROUTINE:  note_g_sharp

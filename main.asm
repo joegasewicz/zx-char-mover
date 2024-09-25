@@ -13,12 +13,20 @@ ENTRY_POINT equ 32768
     ld (23693), a                   ; poke value into screen colour attr memory address
     call 0xdaf                      ; cls clear screen   
 
+
+    ld b, 17                        ; seconds delayed into b
+    call wait_loop
+
     ld bc, NOTE_G_SHARP             ; put g# into bc
     call play_note                  ; play note g#
     ld bc, NOTE_C                   ; play c into bc
     call play_note                  ; play note c
 
-main:
+    ld bc, NOTE_C                   ; play c into bc
+    call play_note                  ; play note cv
+
+
+main:                               ; main entry
     halt                            ; locks to 50fps / halt waits for the interupt
 
 
@@ -58,8 +66,7 @@ main:
     call nc, move_down
     pop af
 
-
-    ld de, (xpos)                   ; ????
+    ld de, (xpos)                   
     call set_position
     call display_sprite
     
@@ -132,6 +139,18 @@ move_down:
     ld a, (ypos)
     inc a
     ld (ypos), a
+    ret
+
+; ------------------------------------------------
+; ROUTINE:  wait_loop
+; DESCR:    Waits (n) amount of time
+; INPUTS:   b - 50 is equal to 1s (50 frames)
+; ------------------------------------------------
+wait_loop:
+    halt
+    halt
+    halt
+    djnz wait_loop
     ret
 
 ;;;;;;;;;;;;;;;;;;;;; DATA ;;;;;;;;;;;;;;;;;;;;;;;;
