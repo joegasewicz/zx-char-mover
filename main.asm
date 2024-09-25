@@ -80,9 +80,10 @@ delete_sprite:
     ret
 
 ; ------------------------------
-; Set Position Routine
-; INPUTS:
-; de = x,y
+; ROUTINE: set_position
+; DESCR: Uses the accumulator to set rst 16 from
+;        d,e with ascii AT.
+; INPUTS: de
 ; ------------------------------
 set_position:
     ld a, ASCII_AT
