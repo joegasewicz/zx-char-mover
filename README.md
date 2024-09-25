@@ -1,7 +1,7 @@
 # ZX Char Mover
 
-Compiler - Pasmo
-Emulator - Fuse
+- Compiler - Pasmo
+- Emulator - Fuse
 
 ### Run
 ```
