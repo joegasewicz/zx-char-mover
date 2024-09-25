@@ -14,6 +14,10 @@ ENTRY_POINT equ 32768
     call 0xdaf                      ; cls clear screen   
 
 
+    call get_random_num             ; put random number in a
+    and %00011111
+    ld (xpos), a
+
     ld b, 17                        ; seconds delayed into b
     call wait_loop
 
@@ -153,8 +157,24 @@ wait_loop:
     djnz wait_loop
     ret
 
+; ------------------------------------------------
+; ROUTINE:  get_random_num
+; DESCR:    Returns random number between 0-255
+; INPUTS:   a
+; ------------------------------------------------
+get_random_num:
+    ld hl, (seed)
+    ld a, h
+    and %00011111                       ; only change the first 5 bits & ignore the 3 high bits
+    ld h, a
+    ld a, (hl)
+    inc hl
+    ld (seed), hl
+    ret 
+
 ;;;;;;;;;;;;;;;;;;;;; DATA ;;;;;;;;;;;;;;;;;;;;;;;;
 
+seed dw 0
 score dw 0000
 score_xpos db 0
 score_ypos db 0
